@@ -10,12 +10,12 @@ public class VacanciesService {
    private RestTemplate template;
    private Map<Long, List<VacancyHH>> cache;
 
-   List<VacancyHH> getList(Long page, Long size, List<String> types, List<String> companies) {
+   List<VacancyHeadHunter> getList(Long page, Long size, List<String> types, List<String> companies) {
        if (cache.containsKey(getHash(page, types, companies))) {
            return cache.get(getHash(page, types, companies));
        }
        try {
-           List<VacancyHH> vacancies = template.getForObject(vendorHost + vendorUri, VacanciesHH.class,
+           List<VacancyHeadHunter> vacancies = template.getForObject(vendorHost + vendorUri, VacanciesHeadHunter.class,
                    page, size, types, companies
            ).getVacancies();
            cache.put(getHash(page, types, companies), vacancies);
@@ -28,16 +28,15 @@ public class VacanciesService {
 }
 
 public class HashUtils {
-
    public static Long getHash(Long page, List<String> types, List<String> companies) {
        return 1l;
    }
 }
 
 @Data
-public class VacanciesHH {
-   private List<VacancyHH> vacancies;
+public class VacanciesHeadHunter {
+   private List<VacancyHeadHunter> vacancies;
 }
 
-public class VacancyHH {
+public class VacancyHeadHunter {
 }
