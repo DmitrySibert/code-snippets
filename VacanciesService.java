@@ -1,13 +1,15 @@
 @Component
 @Slf4j
-@AllArgsConstructor
+@NoArgsConstructor
 public class VacanciesService {
+   
    @Value("vendor.host")
    String vendorHost;
    @Value("vendor.uri")
    String vendorUri;
    @Autowired
    private RestTemplate template;
+   
    private Map<Long, List<VacancyHH>> cache;
 
    @Async
