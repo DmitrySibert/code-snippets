@@ -10,6 +10,7 @@ public class VacanciesService {
    private RestTemplate template;
    private Map<Long, List<VacancyHH>> cache;
 
+   @Async
    List<VacancyHeadHunter> getList(Long page, Long size, List<String> types, List<String> companies) {
        if (cache.containsKey(getHash(page, types, companies))) {
            return cache.get(getHash(page, types, companies));
